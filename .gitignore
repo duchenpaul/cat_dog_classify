@@ -1,0 +1,31 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+### Above combination will ignore all files without extension ###
+
+**/__pycache__
+**/*.pyc
+
+**/*.db
+**/*.csv
+**/*.log
+**/*.jpg
+**/*.png
+**/*.7z
+**/*.npy
+**/*.model
+**/*.h5
+
+fonts/*
+models/*
+logs/*
+training_data/*
+
+*test*
+config.ini
