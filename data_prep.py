@@ -64,6 +64,7 @@ def generate_file_list_2(dataset_dir):
 
 def generate_file_list():
     dataset_dict_list = generate_file_list_1(dataset_dir_1)
+    # Remove the second source feed to reduce system source consuming
     # dataset_dict_list += generate_file_list_2(dataset_dir_2)
     cat_count = 0
     dog_count = 0
@@ -104,8 +105,11 @@ def dump_dataset(x_dataset, y_dataset):
         img_data = x_dataset[x]
         label = y_dataset[x]
         dataset.append((img_data, label))
+    print('Convert to array...')
     dataset = np.array(dataset)
+    print('Shuffle array...')
     np.random.shuffle(dataset)
+    print('Dump array...')
     np.save(data_dump, dataset)
 
 
