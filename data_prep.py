@@ -91,7 +91,7 @@ def read_img(image_path_list):
             print(e)
         else:
             pass
-    np.array(x_dataset)
+    x_dataset = np.array(x_dataset)
     x_dataset = np_utils.normalize(x_dataset)
     return x_dataset
 
