@@ -6,7 +6,6 @@ import config
 
 
 IMG_SIZE = config.IMG_SIZE
-IMG_SIZE = 150
 
 def img_read(img_path):
     return cv2.imread(img_path)

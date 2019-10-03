@@ -67,7 +67,7 @@ def generate_file_list():
     # dataset_dict_list += generate_file_list_2(dataset_dir_2)
     cat_count = 0
     dog_count = 0
-    for x in tqdm(dataset_dict_list):
+    for x in dataset_dict_list:
         if x['group_id'] == 0:
             cat_count += 1
         elif x['group_id'] == 1 :
@@ -118,4 +118,6 @@ if __name__ == '__main__':
         [x['group_id'] for x in dataset_dict_list])
 
     print('dumping numpy...')
+    print('x_dataset: {}'.format(x_dataset.shape))
+    print('y_dataset: {}'.format(y_dataset.shape))
     dump_dataset(x_dataset, y_dataset)
