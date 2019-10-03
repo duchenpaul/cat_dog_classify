@@ -1,5 +1,6 @@
 import os
 import toolkit_config
+import toolkit_file
 
 configDict = toolkit_config.read_config_general()['config']
 
@@ -13,3 +14,14 @@ DATA_DMP = 'dataset.npy'
 MODEL_NAME = configDict['model_name']
 
 classify_list = ['Cat', 'Dog']
+
+MODEL_DIR = 'models'
+MODEL_LOG = 'logs'
+
+
+def init_folder():
+    for folder in [MODEL_DIR, MODEL_LOG]:
+        toolkit_file.create_folder(folder)
+
+init_folder()
+

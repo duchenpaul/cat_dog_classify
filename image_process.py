@@ -6,7 +6,7 @@ import config
 
 
 IMG_SIZE = config.IMG_SIZE
-
+IMG_SIZE = 150
 
 def img_read(img_path):
     return cv2.imread(img_path)
@@ -26,7 +26,7 @@ def image_process(img_path):
 
 if __name__ == '__main__':
     import os
-    img_path = os.path.join(config.DATASET_DIR, 'image_1051.jpg')
+    img_path = os.path.join(config.DATASET_DIR_1, 'cat.18.jpg')
     img = cv2.imread(img_path)
     img = img_normalize(img)
     print(type(img))
