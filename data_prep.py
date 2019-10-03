@@ -4,6 +4,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 import matplotlib.pyplot as plt
 from keras.utils import np_utils
 import numpy as np
+import os
 from tqdm import tqdm
 
 import config
@@ -48,11 +49,11 @@ def generate_file_list_2(dataset_dir):
         pic_id = toolkit_file.get_basename(
             file, withExtension=False)
         # ['Cat', 'Dog']
-        if file.split('\\')[-2].lower() == 'cat':
+        if file.split(os.sep)[-2].lower() == 'cat':
             group_id = 1
             dataset_dict_list.append(
                 {'pic_id': pic_id, 'group_id': group_id, 'image_path': file})
-        elif file.split('\\')[-2].lower() == 'dog':
+        elif file.split(os.sep)[-2].lower() == 'dog':
             group_id = 0
             dataset_dict_list.append(
                 {'pic_id': pic_id, 'group_id': group_id, 'image_path': file})
