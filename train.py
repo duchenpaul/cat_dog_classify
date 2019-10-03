@@ -26,7 +26,7 @@ model_file_name = os.path.join(MODEL_DIR, model_name + '.model')
 
 batch_size = 80
 dropOutRate = 0.2
-epochs = 1
+epochs = 1000
 
 
 dataset = np.load(data_dump, allow_pickle=True)
