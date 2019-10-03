@@ -80,21 +80,21 @@ def generate_file_list():
 
 
 def read_img(image_path_list):
-    x_dataset = np.array([image_process.image_process(x)
-                          for x in image_path_list])
+    # x_dataset = np.array([image_process.image_process(x)
+    #                       for x in image_path_list])
 
-    # x_dataset = []
-    # for x in tqdm(image_path_list):
-    #     try:
-    #         x_dataset.append(image_process.image_process(x))
-    #     except Exception as e:
-    #         print('Error processing: {}'.format(x))
-    #         print(e)
-    #     else:
-    #         pass
-    # x_dataset = np.array(x_dataset)
+    x_dataset = []
+    for x in tqdm(image_path_list):
+        try:
+            x_dataset.append(image_process.image_process(x))
+        except Exception as e:
+            print('Error processing: {}'.format(x))
+            print(e)
+        else:
+            pass
+    x_dataset = np.array(x_dataset)
     
-    x_dataset = np_utils.normalize(x_dataset)
+    # x_dataset = np_utils.normalize(x_dataset)
     return x_dataset
 
 
