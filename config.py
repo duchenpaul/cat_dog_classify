@@ -7,8 +7,8 @@ configDict = toolkit_config.read_config_general()['config']
 DATASET_DIR_1 = configDict['dataset_dir_1']
 DATASET_DIR_2 = configDict['dataset_dir_2']
 
-PREDICT_DIR = configDict['predict_dir']
-PREDICT_TGT_DIR = configDict['predict_tgt_dir']
+PREDICT_DIR = configDict.get('predict_dir')
+PREDICT_TGT_DIR = configDict.get('predict_tgt_dir')
 
 IMG_SIZE = int(configDict['img_size'])
 
