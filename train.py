@@ -84,7 +84,7 @@ if __name__ == '__main__':
                              embeddings_freq=0,
                              embeddings_layer_names=None,
                              embeddings_metadata=None)
-    checkpoint = ModelCheckpoint(model_file_name, monitor='val_accuracy',
+    checkpoint = ModelCheckpoint(model_file_name, monitor='val_acc',
                                  verbose=1, save_best_only=True, mode='max', period=10)
 
     model.fit(X_dataset, Y_dataset, epochs=1000, shuffle=True, batch_size=batch_size,
