@@ -22,10 +22,10 @@ predict_tgt_dir = config.PREDICT_TGT_DIR
 
 predictList = toolkit_file.get_file_list(predict_dir)
 predict_dataset = data_prep.read_img(predictList)
-print(predict_dataset.shape)
 predict_dataset = predict_dataset.reshape(predict_dataset.shape[0], predict_dataset.shape[1], predict_dataset.shape[2], -1)
 
 # Predict
+print('Predicting using {}'.format(model_file_name))
 model = load_model(model_file_name)
 predict = model.predict(predict_dataset)
 
@@ -34,6 +34,7 @@ predict_dataset = list()
 for x in range(len(predictList)):
     predict_dataset.append((predictList[x], predict[x]))
 # print(np.argmax(predict))
+print('Predict done')
 
 
 def predict_show(predict_dataset):
@@ -57,7 +58,11 @@ def predict_show(predict_dataset):
         print('Confidence: {}%'.format(confidence))
         
         predict_img = cv2.imread(predict_img_path)
+        h, w = predict_img.shape[:2]
+        fixed_height = 60
+        fixed_width = int(fixed_height*w/h)
         predict_img = cv2.cvtColor(predict_img, cv2.COLOR_BGR2RGB)
+        # predict_img = cv2.resize(predict_img, (fixed_width, fixed_height), interpolation=cv2.INTER_CUBIC)
 
         fileName = toolkit_file.get_basename(predict_img_path, withExtension=True)
 
@@ -67,7 +72,7 @@ def predict_show(predict_dataset):
 
         tag = '{str_label} {confi}% {fileName}'.format(str_label=str_label+notSureFlag, fileName=fileName, confi=confidence)
 
-        color = color_card.color_card(confidence)
+        color = color_card.color_card(confidence * 2 - 100)
 
         plt.title(tag,color=color)
         figure.imshow(predict_img, cmap='gray', vmin = 0, vmax = 255)
@@ -77,7 +82,7 @@ def predict_show(predict_dataset):
 def seperate_image(predict_dataset):
     import shutil
 
-    for folder in ['predict_Cat', 'predict_Dog']:
+    for folder in ['predict_Cat', 'predict_Dog', 'predict_NotSure']:
         toolkit_file.create_folder(os.path.join(predict_tgt_dir, folder))
 
     for no, x in enumerate(predict_dataset):
@@ -99,7 +104,10 @@ def seperate_image(predict_dataset):
 
         tag = '{str_label} {confi}% {fileName}'.format(str_label=str_label+notSureFlag, fileName=fileName, confi=confidence)
         print(tag)
-        shutil.copy(predict_img_path, os.path.join(predict_tgt_dir, str_label))
+        if confidence > 70:
+            shutil.copy(predict_img_path, os.path.join(predict_tgt_dir, str_label))
+        else:
+            shutil.copy(predict_img_path, os.path.join(predict_tgt_dir, 'predict_NotSure'))
 
 
 
