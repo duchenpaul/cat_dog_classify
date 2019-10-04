@@ -88,7 +88,7 @@ if __name__ == '__main__':
                                  verbose=1, save_best_only=True, mode='max', period=10)
 
     model.fit(X_dataset, Y_dataset, epochs=1000, shuffle=True, batch_size=batch_size,
-              validation_split=0.1, callbacks=[callback, tbCallBack])
+              validation_split=0.1, callbacks=[callback, tbCallBack, checkpoint])
     # model.fit(X_dataset, Y_dataset, epochs=epochs, shuffle=True, batch_size=batch_size,
     #           validation_split=0.1, callbacks=[tbCallBack])
     model.save(model_file_name)
