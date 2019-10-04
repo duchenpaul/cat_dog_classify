@@ -25,7 +25,7 @@ model_name = config.MODEL_NAME
 model_file_name = os.path.join(MODEL_DIR, model_name + '.model')
 
 batch_size = 80
-dropOutRate = 0.5
+dropOutRate = 0.8
 epochs = 1000
 lrate = 1e-3
 
