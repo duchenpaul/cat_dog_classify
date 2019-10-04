@@ -50,11 +50,11 @@ def generate_file_list_2(dataset_dir):
             file, withExtension=False)
         # ['Cat', 'Dog']
         if file.split(os.sep)[-2].lower() == 'cat':
-            group_id = 1
+            group_id = 0
             dataset_dict_list.append(
                 {'pic_id': pic_id, 'group_id': group_id, 'image_path': file})
         elif file.split(os.sep)[-2].lower() == 'dog':
-            group_id = 0
+            group_id = 1
             dataset_dict_list.append(
                 {'pic_id': pic_id, 'group_id': group_id, 'image_path': file})
         else:
