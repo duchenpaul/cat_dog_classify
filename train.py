@@ -48,11 +48,12 @@ def buildModel(shape):
     model.add(Conv2D(64, (2, 2), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    # model.add(Conv2D(128, (3, 3), padding='same', activation='relu'))
-    # model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(dropOutRate))
+    model.add(Conv2D(128, (3, 3), padding='same', activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    # model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
-    # model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
 
     model.add(Flatten())
     model.add(Dense(1024, activation='relu'))
@@ -74,7 +75,7 @@ if __name__ == '__main__':
     model = buildModel(shape)
 
     callback = EarlyStopping(
-        monitor="loss", patience=10, verbose=1, mode="auto")
+        monitor="loss", patience=20, verbose=1, mode="auto")
     tbCallBack = TensorBoard(log_dir=os.path.join(MODEL_LOG, model_name),    # log 目录
                              histogram_freq=1,    # 按照何等频率（epoch）来计算直方图，0为不计算
                              #                                    batch_size=batch_size,         # 用多大量的数据计算直方图
