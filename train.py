@@ -27,6 +27,7 @@ model_file_name = os.path.join(MODEL_DIR, model_name + '.model')
 batch_size = 80
 dropOutRate = 0.5
 epochs = 1000
+lrate = 1e-3
 
 
 dataset = np.load(data_dump, allow_pickle=True)
@@ -57,7 +58,7 @@ def buildModel(shape):
     model.add(Dense(1024, activation='relu'))
     model.add(Dropout(dropOutRate))
     model.add(Dense(num_classes, activation='softmax'))
-    lrate = 1e-3
+
     # opt = Adam(lr=lrate)
     opt = rmsprop(lr=lrate, decay=1e-6)
     model.compile(loss="categorical_crossentropy",
@@ -73,7 +74,7 @@ if __name__ == '__main__':
     model = buildModel(shape)
 
     callback = EarlyStopping(
-        monitor="val_loss", patience=30, verbose=1, mode="auto")
+        monitor="loss", patience=10, verbose=1, mode="auto")
     tbCallBack = TensorBoard(log_dir=os.path.join(MODEL_LOG, model_name),    # log 目录
                              histogram_freq=1,    # 按照何等频率（epoch）来计算直方图，0为不计算
                              #                                    batch_size=batch_size,         # 用多大量的数据计算直方图
