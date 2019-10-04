@@ -63,6 +63,7 @@ def generate_file_list_2(dataset_dir):
 
 
 def generate_file_list():
+    dataset_dict_list = []
     dataset_dict_list = generate_file_list_1(dataset_dir_1)
     # Remove the second source feed to reduce system source consuming
     dataset_dict_list += generate_file_list_2(dataset_dir_2)
